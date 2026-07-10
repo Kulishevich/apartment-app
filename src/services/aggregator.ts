@@ -6,7 +6,7 @@ const filters = {
   minPrice: 0,
   maxPrice: 460,
   rooms: [2, 3, 4],
-  pageSize: 5,
+  pageSize: 30,
 };
 
 export const aggregateApartments = async (): Promise<Apartment[]> => {
