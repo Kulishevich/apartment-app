@@ -13,6 +13,7 @@ export function formatApartment(apartment: Apartment): string {
     `💰 <b>Цена:</b> ${price} $/мес`,
     `📍 <b>Адрес:</b> ${apartment.adress}`,
     `📝 <b>Описание:</b> ${apartment.description}`,
+    `📷 <b>Ссылка:</b> ${apartment.link}`,
   ];
 
   return lines.join("\n");

@@ -3,7 +3,7 @@ import { getKufarAds } from "../parsers/kufar";
 
 const filters = {
   city: "minsk",
-  minPrice: 0,
+  minPrice: 1,
   maxPrice: 460,
   rooms: [2, 3, 4],
   pageSize: 30,

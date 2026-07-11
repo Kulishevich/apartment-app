@@ -1,1 +1,1 @@
-export { getKufarAds } from "./kufar";
+export { getKufarAds } from "./api";

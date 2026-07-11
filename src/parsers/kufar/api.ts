@@ -1,12 +1,11 @@
 import axios from "axios";
-import { KufarAdResponse } from "../kufar/types";
 import { Apartment } from "../../models/apartment";
 import { mapKufarAd } from "./mapper";
 
 interface KufarSearchFilters {
   city: string;
   minPrice?: number;
-  maxPrice?: number;
+  maxPrice: number;
   rooms?: number[];
   pageSize?: number;
   typ?: "let" | "sell";
@@ -14,10 +13,10 @@ interface KufarSearchFilters {
 
 export async function getKufarAds({
   city,
-  minPrice,
+  minPrice = 1,
   maxPrice,
   rooms,
-  pageSize = 5,
+  pageSize = 30,
   typ = "let",
 }: KufarSearchFilters): Promise<Apartment[]> {
   const queryParams = new URLSearchParams();
