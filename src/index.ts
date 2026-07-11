@@ -1,4 +1,3 @@
-import { getOnlinerApartments } from "./parsers/onliner";
 import { aggregateApartments } from "./services/aggregator";
 import { ApartmentCache } from "./services/apartment-cache";
 import { formatApartment } from "./telegram/formatter";
@@ -8,13 +7,6 @@ async function main() {
   const cache = new ApartmentCache();
   async function check() {
     const apartments = await aggregateApartments();
-    const onlinerApartments = await getOnlinerApartments({
-      minPrice: 1,
-      maxPrice: 460,
-      rooms: [2, 3, 4],
-      pageSize: 2,
-    });
-    console.log(onlinerApartments);
     const newApartments = cache.getNewApartments(apartments);
 
     console.log(`Получено: ${apartments.length}`);

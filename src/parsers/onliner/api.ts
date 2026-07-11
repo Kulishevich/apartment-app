@@ -33,6 +33,6 @@ export async function getOnlinerApartments({
   const url = `https://r.onliner.by/sdapi/ak.api/search/apartments?${onlinerQueryParams.toString()}`;
 
   const response = await axios.get<OnlinerApartmentResponse>(url);
-  console.log(url);
+
   return response.data.apartments.map(mapOnlinerApartment);
 }
