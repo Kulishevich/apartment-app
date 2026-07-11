@@ -1,8 +1,9 @@
 import axios from "axios";
 import { Apartment } from "../../models/apartment";
-import { mapKufarAd } from "./mapper";
+import { mapKufarApartment } from "./mapper";
+import { KufarSearchResponse } from "./types";
 
-interface KufarSearchFilters {
+export interface KufarSearchFilters {
   city: string;
   minPrice?: number;
   maxPrice: number;
@@ -11,7 +12,7 @@ interface KufarSearchFilters {
   typ?: "let" | "sell";
 }
 
-export async function getKufarAds({
+export async function getKufarApartments({
   city,
   minPrice = 1,
   maxPrice,
@@ -38,7 +39,7 @@ export async function getKufarAds({
   queryParams.append("typ", typ);
   const url = `https://api.kufar.by/search-api/v2/search/rendered-paginated?${queryParams.toString()}`;
 
-  const response = await axios.get(url);
+  const response = await axios.get<KufarSearchResponse>(url);
 
-  return response.data.ads.map(mapKufarAd);
+  return response.data.ads.map(mapKufarApartment);
 }

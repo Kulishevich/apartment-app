@@ -6,7 +6,7 @@ export const mapOnlinerApartment = (raw: OnlinerApartment): Apartment => ({
   source: ApartmentSource.ONLINER,
   title: raw.location.address,
   link: raw.url,
-  adress: raw.location.address,
+  address: raw.location.address,
   description: raw.location.address,
   price: Number(raw.price.amount),
   images: [raw.photo],

@@ -96,9 +96,11 @@ interface KufarPagination {
   pages: KufarPaginationPage[];
 }
 
-export interface KufarAdResponse {
+export interface KufarSearchResponse {
   ads: KufarAd[];
   page_type: string;
   pagination: KufarPagination;
   total: number;
 }
+
+export type KufarAdResponse = KufarSearchResponse;

@@ -1,9 +1,16 @@
 import { Apartment } from "../models/apartment";
-import { getKufarAds } from "../parsers/kufar";
+import { getKufarApartments } from "../parsers/kufar";
 import { getOnlinerApartments } from "../parsers/onliner";
 
-const filters = {
+const kufarFilters = {
   city: "minsk",
+  minPrice: 1,
+  maxPrice: 460,
+  rooms: [2, 3, 4],
+  pageSize: 10,
+};
+
+const onlinerFilters = {
   minPrice: 1,
   maxPrice: 460,
   rooms: [2, 3, 4],
@@ -12,8 +19,8 @@ const filters = {
 
 export const aggregateApartments = async (): Promise<Apartment[]> => {
   const apartments = await Promise.all([
-    getKufarAds(filters),
-    getOnlinerApartments(filters),
+    getKufarApartments(kufarFilters),
+    getOnlinerApartments(onlinerFilters),
   ]);
 
   return apartments.flat();

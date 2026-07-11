@@ -11,7 +11,7 @@ export function formatApartment(apartment: Apartment): string {
     `📬 <b>Источник:</b> ${apartment.source}`,
     "",
     `💰 <b>Цена:</b> ${price} $/мес`,
-    `📍 <b>Адрес:</b> ${apartment.adress}`,
+    `📍 <b>Адрес:</b> ${apartment.address}`,
     `📝 <b>Описание:</b> ${apartment.description}`,
     `📷 <b>Ссылка:</b> ${apartment.link}`,
   ];

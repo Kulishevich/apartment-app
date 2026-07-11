@@ -43,8 +43,10 @@ interface OnlinerPage {
   last: number;
 }
 
-export interface OnlinerApartmentResponse {
+export interface OnlinerSearchResponse {
   apartments: OnlinerApartment[];
   total: number;
   page: OnlinerPage;
 }
+
+export type OnlinerApartmentResponse = OnlinerSearchResponse;

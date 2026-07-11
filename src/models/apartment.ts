@@ -9,7 +9,7 @@ export interface Apartment {
   source: ApartmentSource;
   title: string;
   link: string;
-  adress: string;
+  address: string;
   description: string;
   price: number;
   images: string[];
