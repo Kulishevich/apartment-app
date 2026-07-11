@@ -6,21 +6,14 @@ export function formatApartment(apartment: Apartment): string {
     minimumFractionDigits: 0,
   }).format(apartment.price);
 
-  const imageLinks = apartment.images.slice(0, 3).join("\n");
-
   const lines = [
     `🏠 <b>${apartment.title}</b>`,
+    `📬 <b>Источник:</b> ${apartment.source}`,
     "",
     `💰 <b>Цена:</b> ${price} $/мес`,
     `📍 <b>Адрес:</b> ${apartment.adress}`,
     `📝 <b>Описание:</b> ${apartment.description}`,
-    "",
-    `🔗 <a href="${apartment.link}">Открыть объявление</a>`,
   ];
-
-  if (imageLinks) {
-    lines.push("", imageLinks);
-  }
 
   return lines.join("\n");
 }

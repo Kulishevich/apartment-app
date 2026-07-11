@@ -1,8 +1,9 @@
 import { KufarAd } from "./types";
-import { Apartment } from "../../models/apartment";
+import { Apartment, ApartmentSource } from "../../models/apartment";
 
 export const mapKufarAd = (raw: KufarAd): Apartment => ({
   id: raw.ad_id.toString(),
+  source: ApartmentSource.KUFAR,
   title: raw.subject,
   link: raw.ad_link,
   adress: raw.account_parameters[0].v as string,
