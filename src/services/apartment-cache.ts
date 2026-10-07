@@ -10,22 +10,22 @@ export class ApartmentCache {
   }
 
   public getNewApartments(apartments: Apartment[]): Apartment[] {
-    const result: Apartment[] = [];
-
-    for (const apartment of apartments) {
-      const apartmentKey = this.getApartmentKey(apartment);
-
-      if (!this.seen.has(apartmentKey)) {
-        this.seen.add(apartmentKey);
-        result.push(apartment);
-      }
-    }
+    const unseen = apartments.filter(
+      (apartment) => !this.seen.has(this.getApartmentKey(apartment)),
+    );
 
     if (!this.initialized) {
+      for (const apartment of unseen) {
+        this.markAsSeen(apartment);
+      }
       this.initialized = true;
       return [];
     }
 
-    return result;
+    return unseen;
+  }
+
+  public markAsSeen(apartment: Apartment): void {
+    this.seen.add(this.getApartmentKey(apartment));
   }
 }

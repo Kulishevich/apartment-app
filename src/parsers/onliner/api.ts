@@ -17,7 +17,8 @@ export async function getOnlinerApartments({
   pageSize = 30,
 }: OnlinerSearchFilters): Promise<Apartment[]> {
   const queryParams = new URLSearchParams();
-  const roomTypes = rooms?.map((room) => `${room}_rooms`) ?? [];
+  const roomTypes =
+    rooms?.map((room) => (room === 1 ? "1_room" : `${room}_rooms`)) ?? [];
 
   for (const roomType of roomTypes) {
     queryParams.append("rent_type[]", roomType);

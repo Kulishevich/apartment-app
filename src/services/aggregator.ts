@@ -6,14 +6,14 @@ const kufarFilters = {
   city: "minsk",
   minPrice: 1,
   maxPrice: 460,
-  rooms: [2, 3, 4],
+  rooms: [1, 2, 3, 4],
   pageSize: 10,
 };
 
 const onlinerFilters = {
   minPrice: 1,
   maxPrice: 460,
-  rooms: [2, 3, 4],
+  rooms: [1, 2, 3, 4],
   pageSize: 10,
 };
 

@@ -5,22 +5,46 @@ import { sendMessage } from "./telegram/telegram";
 
 async function main() {
   const cache = new ApartmentCache();
+  let checking = false;
+
   async function check() {
-    const apartments = await aggregateApartments();
-    const newApartments = cache.getNewApartments(apartments);
+    if (checking) {
+      return;
+    }
 
-    console.log(`Получено: ${apartments.length}`);
-    console.log(`Новых: ${newApartments.length}`);
-    console.log(newApartments);
+    checking = true;
 
-    for (const apartment of newApartments) {
-      await sendMessage(formatApartment(apartment));
+    try {
+      const apartments = await aggregateApartments();
+      const newApartments = cache.getNewApartments(apartments);
+
+      console.log(`Получено: ${apartments.length}`);
+      console.log(`Новых: ${newApartments.length}`);
+      console.log(newApartments);
+
+      for (const apartment of newApartments) {
+        try {
+          await sendMessage(formatApartment(apartment));
+          cache.markAsSeen(apartment);
+        } catch (error) {
+          console.error(
+            `Не удалось отправить ${apartment.source}:${apartment.id}`,
+            error,
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Ошибка при проверке объявлений", error);
+    } finally {
+      checking = false;
     }
   }
 
   await check();
 
-  setInterval(check, 30000);
+  setInterval(() => {
+    void check();
+  }, 30000);
 }
 
 main();
