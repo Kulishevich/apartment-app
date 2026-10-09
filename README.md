@@ -31,6 +31,12 @@ pnpm install
 ```env
 TELEGRAM_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
+
+SEARCH_CITY=minsk
+SEARCH_MIN_PRICE=1
+SEARCH_MAX_PRICE=450
+SEARCH_ROOMS=1,2,3,4
+SEARCH_PAGE_SIZE=10
 ```
 
 Как получить значения:
@@ -62,32 +68,15 @@ pnpm dev
 
 ## Настройка фильтров поиска
 
-Фильтры задаются в `src/services/aggregator.ts`:
+Фильтры задаются в `.env` и используются и для Kufar, и для Onliner. После изменения перезапусти бота.
 
-```ts
-const kufarFilters = {
-  city: "minsk",
-  minPrice: 1,
-  maxPrice: 460,
-  rooms: [2, 3, 4],
-  pageSize: 10,
-};
-
-const onlinerFilters = {
-  minPrice: 1,
-  maxPrice: 460,
-  rooms: [2, 3, 4],
-  pageSize: 10,
-};
-```
-
-| Параметр | Описание | Kufar | Onliner |
+| Переменная | Описание | Kufar | Onliner |
 |---|---|---|---|
-| `city` | Город (для Kufar: `minsk` и т.п.) | да | нет |
-| `minPrice` | Минимальная цена в USD | да | да |
-| `maxPrice` | Максимальная цена в USD | да | да |
-| `rooms` | Число комнат | да | да |
-| `pageSize` | Сколько объявлений брать за один запрос | да | да |
+| `SEARCH_CITY` | Город (`minsk` и т.п.) | да | нет |
+| `SEARCH_MIN_PRICE` | Минимальная цена в USD | да | да |
+| `SEARCH_MAX_PRICE` | Максимальная цена в USD | да | да |
+| `SEARCH_ROOMS` | Число комнат через запятую, например `1,2,3,4` | да | да |
+| `SEARCH_PAGE_SIZE` | Сколько объявлений брать за один запрос | да | да |
 
 Интервал опроса меняется в `src/index.ts` (`setInterval(..., 30000)` — миллисекунды).
 
